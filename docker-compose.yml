@@ -7,9 +7,6 @@ services:
     container_name: classifier_flask_api
     restart: always
     build: ./api
-    volumes: ['./api:/api']
-    networks:
-      - apinetwork
     expose:
       - "5001"
     ports:
@@ -20,12 +17,9 @@ services:
     container_name: classifier_nginx
     restart: always
     build: ./nginx
-    networks:
-      - apinetwork
     expose:
       - "8081"
     ports:
       - "81:8081"
-
-networks:
-  apinetwork:
+    depends_on:
+      - api
