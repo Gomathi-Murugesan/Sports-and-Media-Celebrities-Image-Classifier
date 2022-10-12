@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+
+  api:
+    image: gomathi33/classifier_api
+    container_name: classifier_flask_api
+    restart: always
+    build: ./api
+    volumes: ['./api:/api']
+    networks:
+      - apinetwork
+    expose:
+      - "5001"
+    ports:
+      - "5001:5001"
+
+  nginx:
+    image: gomathi33/classifier_nginx
+    container_name: classifier_nginx
+    restart: always
+    build: ./nginx
+    networks:
+      - apinetwork
+    expose:
+      - "8081"
+    ports:
+      - "81:8081"
+
+networks:
+  apinetwork:

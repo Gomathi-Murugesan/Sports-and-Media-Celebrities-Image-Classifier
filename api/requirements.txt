@@ -1,0 +1,8 @@
+Flask
+numpy
+pandas
+sklearn
+matplotlib
+gunicorn
+opencv-python
+pywavelets
